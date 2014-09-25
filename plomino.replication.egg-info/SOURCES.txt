@@ -1,0 +1,17 @@
+README.txt
+setup.cfg
+setup.py
+plomino/__init__.py
+plomino.replication.egg-info/PKG-INFO
+plomino.replication.egg-info/SOURCES.txt
+plomino.replication.egg-info/dependency_links.txt
+plomino.replication.egg-info/entry_points.txt
+plomino.replication.egg-info/namespace_packages.txt
+plomino.replication.egg-info/not-zip-safe
+plomino.replication.egg-info/paster_plugins.txt
+plomino.replication.egg-info/requires.txt
+plomino.replication.egg-info/top_level.txt
+plomino/replication/PGReplication.py
+plomino/replication/__init__.py
+plomino/replication/setuphandlers.py
+plomino/replication/tests.py
