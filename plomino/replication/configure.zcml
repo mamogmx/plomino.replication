@@ -36,17 +36,17 @@
 
   <subscriber
     for="Products.CMFPlomino.PlominoDocument.PlominoDocument .plominoEvent.IPlominoSaveEvent"
-    handler=".eventHandlers.save"
+    handler=".pgReplication.saveData"
     />
 
   <subscriber
     for="Products.CMFPlomino.PlominoDocument.PlominoDocument zope.app.container.interfaces.IObjectRemovedEvent"
-    handler=".eventHandlers.delete"
+    handler=".pgReplication.delData"
     />
 
   <subscriber
     for="Products.CMFPlomino.PlominoDocument.PlominoDocument Products.CMFCore.interfaces.IActionSucceededEvent"
-    handler=".eventHandlers.transition"
+    handler=".pgReplication.saveData"
     />
 
 </configure>
