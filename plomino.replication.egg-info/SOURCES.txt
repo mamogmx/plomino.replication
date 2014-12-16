@@ -11,7 +11,7 @@ plomino.replication.egg-info/not-zip-safe
 plomino.replication.egg-info/paster_plugins.txt
 plomino.replication.egg-info/requires.txt
 plomino.replication.egg-info/top_level.txt
-plomino/replication/PGReplication.py
 plomino/replication/__init__.py
+plomino/replication/interfaces.py
 plomino/replication/setuphandlers.py
 plomino/replication/tests.py

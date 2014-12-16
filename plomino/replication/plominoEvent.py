@@ -8,6 +8,8 @@ class IPlominoSaveEvent(IObjectEvent):
 class PlominoSaveEvent(ObjectEvent):
     grok.implements(IPlominoSaveEvent)
 
-    def __init__(self):
-        import pdb
-        pdb.set_trace()
+    def __init__(self,obj):
+        self.object = obj
+        
+
+        
