@@ -34,6 +34,19 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+  <subscriber
+    for="Products.CMFPlomino.PlominoDocument.PlominoDocument .plominoEvent.PlominoSaveEvent"
+    handler=".eventHandler.save"
+    />
 
+  <subscriber
+    for="Products.CMFPlomino.PlominoDocument.PlominoDocument zope.app.container.interfaces.IObjectRemovedEvent"
+    handler=".eventHandler.delete"
+    />
+
+  <subscriber
+    for="Products.CMFPlomino.PlominoDocument.PlominoDocument Products.CMFCore.interfaces.IActionSucceededEventt"
+    handler=".eventHandler.transition"
+    />
 
 </configure>

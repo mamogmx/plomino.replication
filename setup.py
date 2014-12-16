@@ -28,6 +28,7 @@ setup(name='plomino.replication',
           'setuptools',
           # -*- Extra requirements: -*-
           'z3c.baseregistry',
+          'Products.CMFPlomino',
       ],
       entry_points="""
       # -*- Entry points: -*-
