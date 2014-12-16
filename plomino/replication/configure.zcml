@@ -35,7 +35,7 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <subscriber
-    for="Products.CMFPlomino.PlominoDocument.PlominoDocument .plominoEvent.PlominoSaveEvent"
+    for="Products.CMFPlomino.PlominoDocument.PlominoDocument .plominoEvent.IPlominoSaveEvent"
     handler=".eventHandlers.save"
     />
 
