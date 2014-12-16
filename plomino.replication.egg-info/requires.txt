@@ -1,2 +1,3 @@
 setuptools
 z3c.baseregistry
+Products.CMFPlomino

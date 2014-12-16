@@ -35,7 +35,7 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <subscriber
-    for="Products.CMFPlomino.PlominoDocument.PlominoDocument .Products.CMFPlomino.plominoEvents.IPlominoSaveEvent"
+    for="Products.CMFPlomino.PlominoDocument.PlominoDocument .Products.CMFPlomino.PlominoEvents.IPlominoSaveEvent"
     handler=".pgReplication.saveData"
     />
 
