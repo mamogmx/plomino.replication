@@ -45,7 +45,7 @@
     />
 
   <subscriber
-    for="Products.CMFPlomino.PlominoDocument.PlominoDocument Products.CMFCore.interfaces.IActionSucceededEventt"
+    for="Products.CMFPlomino.PlominoDocument.PlominoDocument Products.CMFCore.interfaces.IActionSucceededEvent"
     handler=".eventHandlers.transition"
     />
 
