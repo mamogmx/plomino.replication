@@ -34,13 +34,6 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
-	<utility
-		component=".pgReplication.pgReplication"
-		provides="zope.component.interfaces.IComponents"
-		name="PGReplication"
-	/>
-	
-	include package="z3c.baseregistry" file="meta.zcml"/>
 
 
 </configure>
