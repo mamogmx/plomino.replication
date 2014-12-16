@@ -26,8 +26,6 @@ setup(name='plomino.replication',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.dexterity [grok]',
-          'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-
           'z3c.baseregistry',
       ],
