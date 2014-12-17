@@ -69,10 +69,11 @@ def getPlominoValues(doc):
         api.portal.show_message(message='Errore nel campo %s' %f['name'], request=doc.REQUEST)
     return results 
 
-def saveData(doc):
+def saveData(doc,events):
     #getting database configuration
     param_name = 'db_%s' %doc.getParentDatabase().id
-    conf = doc.get_properties(params=(param_name, )).values()[0]
+    #conf = doc.get_properties(params=(param_name, )).values()[0]
+    conf = dict()
     if not 'value' in conf.keys():
         api.portal.show_message(message='Replication not configured', request=doc.REQUEST)
         return -1
@@ -134,12 +135,13 @@ def saveData(doc):
     return 1
     
     
-def delData(doc):
+def delData(doc,events):
     #getting database configuration
     param_name = 'db_%s' %doc.getParentDatabase().id
-    conf = doc.get_properties(params=(param_name, )).values()[0]
+    #conf = doc.get_properties(params=(param_name, )).values()[0]
+    conf = dict()
     if not 'value' in conf.keys():
-        api.portal.show_message(message='Replication not configured')
+        api.portal.show_message(message='Replication not configured', request=doc.REQUEST )
         return -1
     conf = json.loads(conf['value'])
     #istantiation of SQLAlquemy object
