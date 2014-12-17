@@ -72,8 +72,10 @@ def getPlominoValues(doc):
 def saveData(doc,events):
     #getting database configuration
     param_name = 'db_%s' %doc.getParentDatabase().id
-    #conf = doc.get_properties(params=(param_name, )).values()[0]
-    conf = dict()
+    try:
+        conf = doc.get_properties(params=(param_name, )).values()[0]
+    except:
+        conf = dict()
     if not 'value' in conf.keys():
         api.portal.show_message(message='Replication not configured', request=doc.REQUEST)
         return -1
@@ -138,8 +140,10 @@ def saveData(doc,events):
 def delData(doc,events):
     #getting database configuration
     param_name = 'db_%s' %doc.getParentDatabase().id
-    #conf = doc.get_properties(params=(param_name, )).values()[0]
-    conf = dict()
+    try:
+        conf = doc.get_properties(params=(param_name, )).values()[0]
+    except:
+        conf = dict()
     if not 'value' in conf.keys():
         api.portal.show_message(message='Replication not configured', request=doc.REQUEST )
         return -1
