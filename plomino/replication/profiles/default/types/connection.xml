@@ -7,7 +7,7 @@
   <property name="title" i18n:translate="">Database Connection</property>
   <property name="description"
     i18n:translate="">Database Connection for Plomino Replication</property>
-  <property name="icon_expr">string:${portal_url}/++resources++plomino.replication/database.png</property>
+  <property name="icon_expr">string:${portal_url}/++resource++plomino.replication/database.png</property>
   <property name="factory">plomino.replications.dbconnection</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
