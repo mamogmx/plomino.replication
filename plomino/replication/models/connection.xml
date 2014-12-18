@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+       xmlns:form="http://namespaces.plone.org/supermodel/form">
+
+    <schema>
+
+        <field name="conn_string" type="zope.schema.TextLine">
+            <description>Database DSN (e.g. postgres://user:password@host:port/dbname)</description>
+            <title>Connection String</title>
+        </field>
+        <field name="db_schema" type="zope.schema.TextLine">
+            <description/>
+            <default>public</default>
+            <title>Database Schema</title>
+        </field>
+        <field name="db_table" type="zope.schema.TextLine">
+            <description/>
+            <title>Database Table/View</title>
+            <required>False</required>
+        </field>
+        <field name="plominodb" type="zope.schema.List">
+            <description/>
+            <required>False</required>
+            <title>Plomino Database Associated</title>
+            <value_type type="zope.schema.Choice">
+                <source>plomino.replication.vocabularies.plominodb_list</source>
+            </value_type>
+        </field>
+    </schema>
+</model>

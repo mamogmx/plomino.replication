@@ -32,6 +32,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:importStep
+      name="plomino.replication"
+      title="Initialize Package"
+      description=""
+      handler="plomino.replication.setuphandlers.initPackage"
+      />
+
+
   <!-- -*- extra stuff goes here -*- -->
 
   <subscriber
