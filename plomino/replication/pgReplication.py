@@ -6,8 +6,19 @@ import simplejson as json
 import DateTime
 
 from plone import api
+from Products.CMFCore.utils import getToolByName
 
 
+def getConnection(db):
+    
+    id = db.id
+    catalog = getToolByName(db, 'portal_catalog')
+    for brain in catalog(portal_type='connection'):
+        br = brain.getObject()
+        if id in br.plominodb:
+            return dict(conn_string=br.conn_string, db_schema=br.db_schema, db_table=br.db_table)
+    return dict()
+    
 def getIolRoles(doc):
     result = dict(
         iol_owner = [],
@@ -24,7 +35,7 @@ def getIolRoles(doc):
     return result
 
 class plominoData(object):
-    def __init__(self, id, plominodb, form, owner, url, review_state, review_history,iol_owner,iol_reviewer,iol_manager, data):
+    def __init__(self, id, plominodb, form, owner, url, review_state, review_history,iol_owner,iol_reviewer,iol_manager, path, data):
         self.id = id
         self.plominoform = form
         self.plominodb = plominodb
@@ -36,6 +47,7 @@ class plominoData(object):
         self.iol_reviewer = iol_reviewer
         self.iol_manager = iol_manager
         self.data = data
+        self.path = path
         
 
 def serialDatagridItem(doc, obj ):
@@ -70,15 +82,11 @@ def getPlominoValues(doc):
 def saveData(doc,events):
     #getting database configuration
     param_name = 'db_%s' %doc.getParentDatabase().id
-    try:
-        conf = doc.get_properties(params=(param_name, )).values()[0]
-    except:
-        conf = dict()
-    if not 'value' in conf.keys():
+    conf = getConnection(doc.getParentDatabase())
+    if not conf:
         api.portal.show_message(message='Replication not configured', request=doc.REQUEST)
         return -1
-    conf = json.loads(conf['value'])
-    
+       
     #istantiation of SQLAlquemy object
     try:
         db = sql.create_engine(conf['conn_string'])
@@ -117,10 +125,11 @@ def saveData(doc,events):
         iol_owner = roles['iol_owner'],
         iol_reviewer = roles['iol_reviewer'],
         iol_manager = roles['iol_manager'],
-        data = d
+        path = doc.getPhysicalPath()[1:],
+        data = d,
     )
     try:    
-        row = plominoData(data['id'],data['plominodb'],data['plominoform'],data['owner'],data["url"], data["review_state"], data["review_history"],data['iol_owner'],data['iol_reviewer'],data['iol_manager'],d)
+        row = plominoData(data['id'],data['plominodb'],data['plominoform'],data['owner'],data["url"], data["review_state"], data["review_history"],data['iol_owner'],data['iol_reviewer'],data['iol_manager'],data['path'],d)
         session = Sess()
         #deleting row from database
         session.query(plominoData).filter_by(id=id).delete()
@@ -138,14 +147,10 @@ def saveData(doc,events):
 def delData(doc,events):
     #getting database configuration
     param_name = 'db_%s' %doc.getParentDatabase().id
-    try:
-        conf = doc.get_properties(params=(param_name, )).values()[0]
-    except:
-        conf = dict()
-    if not 'value' in conf.keys():
-        api.portal.show_message(message='Replication not configured', request=doc.REQUEST )
+    conf = getConnection(doc.getParentDatabase())
+    if not conf:
+        api.portal.show_message(message='Replication not configured', request=doc.REQUEST)
         return -1
-    conf = json.loads(conf['value'])
     #istantiation of SQLAlquemy object
     try:
         db = sql.create_engine(conf['conn_string'])

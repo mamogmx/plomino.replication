@@ -6,10 +6,10 @@ from zope import schema
 from z3c.form import validator
 from plomino.replication import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
+from plone.directives import dexterity, form
 
 
-
-class IConnectionSettings(Interface):
+class IConnectionSettings(form.Schema):
     """ Define the fields for the content type add form
     """
     form.model("models/connection.xml")

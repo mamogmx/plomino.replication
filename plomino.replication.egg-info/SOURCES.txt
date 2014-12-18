@@ -12,9 +12,7 @@ plomino.replication.egg-info/paster_plugins.txt
 plomino.replication.egg-info/requires.txt
 plomino.replication.egg-info/top_level.txt
 plomino/replication/__init__.py
-plomino/replication/eventHandlers.py
 plomino/replication/interfaces.py
 plomino/replication/pgReplication.py
-plomino/replication/plominoEvent.py
 plomino/replication/setuphandlers.py
 plomino/replication/tests.py

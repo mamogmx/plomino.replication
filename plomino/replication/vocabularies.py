@@ -3,7 +3,7 @@ from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary
 from Products.CMFCore.utils import getToolByName
 
-class listPlominoDBs(object):
+class listPlominoDB(object):
     grok.implements(IContextSourceBinder)
     def __call__(self,context):
         catalog = getToolByName(context, 'portal_catalog')

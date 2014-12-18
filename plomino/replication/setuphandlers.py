@@ -1,6 +1,6 @@
 from plone.app.controlpanel.security import ISecuritySchema
 from plone import api
-from Products.CMFCore.CMFBTreeFolder import manage_addCMFBTreeFolder
+from OFS.Folder import manage_addFolder
 
 import logging
 
@@ -9,5 +9,16 @@ logger = logging.getLogger('plomino.replication')
 
 def initPackage(context):
     site = api.portal.get()
-    manage_addCMFBTreeFolder(site, id='db_connections',title='Database Connections for Plomino Replication')
+    if not 'replication_connections' in site.keys():
+        #api.content.create(
+        #    container=site,
+        #    id='replication_connections',
+        #    title='Database Connections for Plomino Replication',
+        #    type='Folder',
+        #)
+        manage_addFolder(
+            site,
+            id='replication_connections',
+            title='Database Connections for Plomino Replication',
+        )
     
