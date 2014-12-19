@@ -48,3 +48,4 @@ def moveObj(connection, event):
         source=connection,
         target=site['replication_connections'],
         safe_id=True)
+

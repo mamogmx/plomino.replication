@@ -14,4 +14,6 @@ class IConnectionSettings(form.Schema):
     """
     form.model("models/connection.xml")
 
-
+class IConnectionLayer(Interface):
+    """Marker interface for the Browserlayer
+    """

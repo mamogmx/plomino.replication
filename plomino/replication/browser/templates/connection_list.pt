@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ploneconf.site">
+<body>
+
+<metal:head fill-slot="javascript_head_slot">
+    <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/media/css/jquery.dataTables.css">
+
+    <script type="text/javascript" src="++resource++jquery.datatables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var oTable = $('#connection').dataTable({
+            });
+        })
+    </script>
+</metal:head>
+
+<metal:content-core fill-slot="content-core">
+
+    <table class="listing" id="connection">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Schema
+                </th>
+                <th>
+                    Table
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr tal:repeat="conn view/connList">
+                <td>
+                    <a href=""
+                       tal:attributes="href conn/url;
+                                       title conn/id"
+                       tal:content="conn/title">
+                       The 7 sins of plone-development
+                    </a>
+                </td>
+                <td tal:content="conn/schema">
+                    Philip Bauer
+                </td>
+                <td tal:content="conn/table">
+                    Advanced
+                </td>
+            </tr>
+            <tr tal:condition="not:view/connList">
+                <td colspan=3>
+                    No Connection Defined
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</metal:content-core>
+</body>
+</html>
