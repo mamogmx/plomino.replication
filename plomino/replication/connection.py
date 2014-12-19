@@ -7,9 +7,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.dialects import postgresql
 
 class connection(Item):
-    #grok.implements(IColumn)
-    #security = ClassSecurityInfo()
-    pass
+    """
+    """
 
 def createTable(connection,engine):
 
