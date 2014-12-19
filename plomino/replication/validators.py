@@ -11,7 +11,7 @@ class validateConn(validator.SimpleFieldValidator):
             msg = u"Invalid connection string"
             raise zope.interface.Invalid(msg)
 
-validator.WidgetValidatorDiscriminators(validateConn, field=connection[conn_string'])
+validator.WidgetValidatorDiscriminators(validateConn, field=connection['conn_string'])
 
 # Register the validator so it will be looked up by z3c.form machinery
 
