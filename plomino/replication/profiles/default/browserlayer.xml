@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="plomino.replication"
+    interface="plomino.replication.interfaces.IConnectionLayer" />
+</layers>
