@@ -10,12 +10,6 @@ logger = logging.getLogger('plomino.replication')
 def initPackage(context):
     site = api.portal.get()
     if not 'replication_connections' in site.keys():
-        #api.content.create(
-        #    container=site,
-        #    id='replication_connections',
-        #    title='Database Connections for Plomino Replication',
-        #    type='Folder',
-        #)
         manage_addFolder(
             site,
             id='replication_connections',

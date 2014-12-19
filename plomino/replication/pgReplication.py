@@ -114,6 +114,7 @@ def saveData(doc,events):
     wf = api.portal.get_tool(name='portal_workflow')
     id = doc.getId()
     roles = getIolRoles(doc)
+    d['id'] = id
     data = dict(
         id = id,
         plominoform = doc.getForm().getFormName(),
