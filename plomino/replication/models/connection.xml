@@ -4,7 +4,8 @@
 
     <schema>
 
-        <field name="conn_string" type="zope.schema.TextLine">
+        <field name="conn_string" type="zope.schema.TextLine"
+                form:validator="plomino.replication.validators.validateConn">
             <description>Database DSN (e.g. postgres://user:password@host:port/dbname)</description>
             <title>Connection String</title>
         </field>
