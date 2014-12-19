@@ -37,7 +37,7 @@ def moveObj(connection, event):
     engine = create_engine(connection.conn_string)
     query = "SELECT count(*) as found FROM information_schema.tables WHERE table_schema='%s' AND table_name='%s'" % (connection.db_schema,connection.db_table)
     for r in engine.execute(query):
-        found = result['found']
+        found = r['found']
 
     if not found:
         createTable(connection,engine)
