@@ -4,6 +4,7 @@ from plone import api
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
 from sqlalchemy import create_engine
+from sqlalchemy.dialects import postgresql
 
 class connection(Item):
     #grok.implements(IColumn)
