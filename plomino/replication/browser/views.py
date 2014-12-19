@@ -8,9 +8,10 @@ class connection(BrowserView):
     """
     def connList(self):
         results = []
-        site = api.portal.get()
-        conn_folder = site['replication_connections']
-        for conn in conn_folder:
+        portal_catalog = getToolByName(self.context, 'portal_catalog')
+        brains = portal_catalog(portal_type="connection")
+        for brain in brains:
+            conn = brain.getObject()
             r = dict(
                 id = conn.id,
                 title = conn.title,
