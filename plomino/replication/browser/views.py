@@ -3,7 +3,7 @@ from plone import api
 from Products.CMFCore.utils import getToolByName
 
 
-class connections(BrowserView):
+class connection(BrowserView):
     """ A list of Database Connections
     """
     def connList(self):

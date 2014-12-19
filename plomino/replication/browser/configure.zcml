@@ -8,8 +8,8 @@
     <browser:page
        name="manage_connections"
        for="*"
-       layer="..interfaces.IConnectionsLayer"
-       class=".views.connections"
+       layer="..interfaces.IConnectionLayer"
+       class=".views.connection"
        template="templates/connection_list.pt"
        permission="zope2.View"
        />
