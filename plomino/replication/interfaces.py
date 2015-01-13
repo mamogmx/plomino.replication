@@ -6,7 +6,7 @@ from zope import schema
 from z3c.form import validator
 from plomino.replication import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
-from plone.directives import dexterity, form
+from plone.directives import form
 
 
 class IConnectionSettings(form.Schema):
