@@ -35,7 +35,7 @@ def getIolRoles(doc):
     return result
 
 class plominoData(object):
-    def __init__(self, id, plominodb, form, owner, url, review_state, review_history,iol_owner,iol_reviewer,iol_manager, path, data):
+    def __init__(self, id, plominodb, form, owner, url, review_state, review_history,iol_owner,iol_reviewer,iol_manager, path, last_mod,data):
         self.id = id
         self.plominoform = form
         self.plominodb = plominodb
@@ -48,6 +48,7 @@ class plominoData(object):
         self.iol_manager = iol_manager
         self.data = data
         self.path = path
+        self.last_modified = last_mod
         
 
 def serialDatagridItem(doc, obj ):
@@ -127,10 +128,11 @@ def saveData(doc,events):
         iol_reviewer = roles['iol_reviewer'],
         iol_manager = roles['iol_manager'],
         path = doc.getPhysicalPath()[1:],
+        last_modified = DateTime.DateTime(),
         data = d,
     )
     try:    
-        row = plominoData(data['id'],data['plominodb'],data['plominoform'],data['owner'],data["url"], data["review_state"], data["review_history"],data['iol_owner'],data['iol_reviewer'],data['iol_manager'],data['path'],d)
+        row = plominoData(data['id'],data['plominodb'],data['plominoform'],data['owner'],data["url"], data["review_state"], data["review_history"],data['iol_owner'],data['iol_reviewer'],data['iol_manager'],data['path'],data['last_modified'],d)
         session = Sess()
         #deleting row from database
         session.query(plominoData).filter_by(id=id).delete()
