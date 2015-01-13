@@ -41,7 +41,6 @@ def moveObj(connection, event):
 
     if not found:
         createTable(connection,engine)
-
     site = api.portal.get()
     api.content.move(
         source=connection,

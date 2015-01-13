@@ -141,7 +141,7 @@ def saveData(doc,events):
         session.close()
         db.dispose()
     except Exception as e:
-        api.portal.show_message(message=u'Si sono verificati errore nel salvataggio su database', request=doc.REQUEST )
+        api.portal.show_message(message=u'Si sono verificati errore nel salvataggio su database %s' %str(e), request=doc.REQUEST )
         db.dispose()
         return -1
     return 1
