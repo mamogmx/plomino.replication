@@ -139,10 +139,10 @@ def saveData(doc,events):
         session.add(row)
         session.commit()
         session.close()
-        db.close()
+        db.dispose()
     except Exception as e:
         api.portal.show_message(message=u'Si sono verificati errore nel salvataggio su database', request=doc.REQUEST )
-        db.close()
+        db.dispose()
         return -1
     return 1
     
@@ -163,7 +163,7 @@ def delData(doc,events):
         rowmapper = orm.mapper(plominoData,table)
     except:
         api.portal.show_message(message=u'Si sono verificati errori nella connessione al database', request=doc.REQUEST )
-        db.close()
+        db.dispose()
         return -1
     #creating session
     Sess = orm.sessionmaker(bind = db)
@@ -173,4 +173,4 @@ def delData(doc,events):
     session.query(plominoData).filter_by(id=docid).delete()
     session.commit()
     session.close()
-    db.close()
+    db.dispose()
