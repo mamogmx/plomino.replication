@@ -4,6 +4,7 @@ import sqlalchemy.orm as orm
 from copy import deepcopy
 import simplejson as json
 import DateTime
+import datetime
 
 from plone import api
 from Products.CMFCore.utils import getToolByName
@@ -22,12 +23,15 @@ def getConnection(db):
 def getIolRoles(doc):
     result = dict(
         iol_owner = [],
+        iol_viewer = [],
         iol_reviewer = [],
         iol_manager = [],
     )
     for usr,roles in doc.get_local_roles():
         if 'Owner' in roles:
             result['iol_owner'].append(usr)
+        if 'iol-viewer' in roles:
+            result['iol_viewer'].append(usr)
         if 'iol-reviewer' in roles:
             result['iol_reviewer'].append(usr)
         if 'iol-manager' in roles:
@@ -35,15 +39,15 @@ def getIolRoles(doc):
     return result
 
 class plominoData(object):
-    def __init__(self, id, plominodb, form, owner, url, review_state, review_history,iol_owner,iol_reviewer,iol_manager, path, last_mod,data):
+    def __init__(self, id, plominodb, form, url, review_state, review_history,iol_owner,iol_viewer,iol_reviewer,iol_manager, path, last_mod,data):
         self.id = id
         self.plominoform = form
         self.plominodb = plominodb
-        self.owner = owner
         self.review_state = review_state
         self.review_history = review_history
         self.url = url
         self.iol_owner = iol_owner
+        self.iol_viewer = iol_viewer
         self.iol_reviewer = iol_reviewer
         self.iol_manager = iol_manager
         self.data = data
@@ -120,19 +124,19 @@ def saveData(doc,events):
         id = id,
         plominoform = doc.getForm().getFormName(),
         plominodb = doc.getParentDatabase().id,
-        owner = doc.getOwner().getUserName(),
         url = doc.absolute_url(),
         review_state = api.content.get_state(obj=doc),
         review_history = json.loads(json.dumps(wf.getInfoFor(doc,'review_history'), default=DateTime.DateTime.ISO,use_decimal=True )),
         iol_owner = roles['iol_owner'],
+        iol_viewer = roles['iol_viewer'],
         iol_reviewer = roles['iol_reviewer'],
         iol_manager = roles['iol_manager'],
         path = doc.getPhysicalPath()[1:],
-        last_modified = DateTime.DateTime(),
+        last_modified = datetime.datetime.now(),
         data = d,
     )
     try:    
-        row = plominoData(data['id'],data['plominodb'],data['plominoform'],data['owner'],data["url"], data["review_state"], data["review_history"],data['iol_owner'],data['iol_reviewer'],data['iol_manager'],data['path'],data['last_modified'],d)
+        row = plominoData(data['id'],data['plominodb'],data['plominoform'],data["url"], data["review_state"], data["review_history"],data['iol_owner'],data['iol_viewer'],data['iol_reviewer'],data['iol_manager'],data['path'],data['last_modified'],d)
         session = Sess()
         #deleting row from database
         session.query(plominoData).filter_by(id=id).delete()
