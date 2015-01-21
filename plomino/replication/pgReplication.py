@@ -126,7 +126,7 @@ def saveData(doc,events):
         plominodb = doc.getParentDatabase().id,
         url = doc.absolute_url(),
         review_state = api.content.get_state(obj=doc),
-        review_history = json.loads(json.dumps(wf.getInfoFor(doc,'review_history'), default=DateTime.DateTime.ISO,use_decimal=True )),
+        review_history = list(), #json.loads(json.dumps(wf.getInfoFor(doc,'review_history'), default=DateTime.DateTime.ISO,use_decimal=True )),
         iol_owner = roles['iol_owner'],
         iol_viewer = roles['iol_viewer'],
         iol_reviewer = roles['iol_reviewer'],
